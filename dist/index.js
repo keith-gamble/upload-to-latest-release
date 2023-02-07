@@ -99,7 +99,8 @@ function run() {
                 release_id,
                 name,
                 headers,
-                file
+                file,
+                label: 'Ignition Module'
             });
             const browser_download_url = response.data.browser_download_url;
             core.debug(`Download URL: ${browser_download_url}`);

@@ -86,7 +86,8 @@ export async function run(): Promise<void> {
         release_id,
         name,
         headers,
-        file
+        file,
+        label: 'Ignition Module'
       }
     )
 
