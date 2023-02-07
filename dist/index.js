@@ -91,13 +91,15 @@ function run() {
                 'content-type': contentType,
                 'content-length': fs.statSync(path).size
             };
+            const file = fs.createReadStream(path);
+            core.debug(`File size: ${headers['content-length']}`);
             const response = yield octokit.request('POST /repos/{owner}/{repo}/releases/{release_id}/assets{?name,label}', {
                 owner,
                 repo,
                 release_id,
                 name,
                 headers,
-                file: fs.createReadStream(path)
+                file
             });
             const browser_download_url = response.data.browser_download_url;
             core.debug(`Download URL: ${browser_download_url}`);

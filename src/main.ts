@@ -75,6 +75,9 @@ export async function run(): Promise<void> {
       'content-length': fs.statSync(path).size
     }
 
+    const file = fs.createReadStream(path)
+    core.debug(`File size: ${headers['content-length']}`)
+
     const response = await octokit.request(
       'POST /repos/{owner}/{repo}/releases/{release_id}/assets{?name,label}',
       {
@@ -83,7 +86,7 @@ export async function run(): Promise<void> {
         release_id,
         name,
         headers,
-        file: fs.createReadStream(path)
+        file
       }
     )
 
