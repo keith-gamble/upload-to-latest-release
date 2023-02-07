@@ -92,7 +92,13 @@ export async function run(): Promise<void> {
     core.debug(`Download URL: ${browser_download_url}`)
   } catch (error: unknown) {
     if (error instanceof Error) {
-      core.setFailed(`${error}\n${error.stack}`)
+      if (error.stack) {
+        const lines = error.stack.split('\n')
+        const limitedStack = lines.slice(0, 10).join('\n')
+        core.setFailed(`${error}\n${limitedStack}`)
+      } else {
+        core.setFailed(error.message)
+      }
     } else {
       core.setFailed('Unknown error')
     }
