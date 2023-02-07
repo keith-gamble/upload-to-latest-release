@@ -25,3 +25,4 @@ This repository was inspired by:
 
 - [shopify/upload-to-release](https://github.com/Shopify/upload-to-release)
 - [actions/typescript-action](https://github.com/actions/typescript-action)
+
