@@ -1,10 +1,13 @@
 name: 'build-test'
 on: # rebuild any PRs and main branch changes
   pull_request:
+    branches:
+      - master
   push:
     branches:
       - master
-      - 'releases/*'
+  workflow_dispatch:
+    
 
 permissions:
   contents: write
