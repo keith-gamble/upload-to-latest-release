@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./
-        # with:
-        #   name: LICENSE
-        #   path: ./LICENSE
-        #   token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: LICENSE
+          path: ./LICENSE
+          token: ${{ secrets.GITHUB_TOKEN }}

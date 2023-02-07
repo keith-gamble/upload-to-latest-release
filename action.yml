@@ -1,6 +1,7 @@
 name: 'Upload to Latest Release Action'
 description: 'A GitHub Action that uploads a file to the latest release.'
 author: 'keith-gamble'
+
 inputs:
   name:
     description: 'Asset name'
@@ -18,6 +19,7 @@ inputs:
 runs:
   using: 'node16'
   main: 'dist/index.js'
+
 branding:
   icon: 'upload'
   color: 'purple'

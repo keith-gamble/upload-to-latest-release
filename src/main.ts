@@ -92,6 +92,7 @@ export async function run(): Promise<void> {
     core.debug(`Download URL: ${browser_download_url}`)
   } catch (error: unknown) {
     if (error instanceof Error) {
+      core.error(error)
       core.setFailed(error.message)
     } else {
       core.setFailed('Unknown error')
