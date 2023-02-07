@@ -2,8 +2,6 @@ import { run } from '../src/main'
 import * as github from "@actions/github";
 import * as octokit from "@octokit/rest";
 import * as process from 'process'
-import * as cp from 'child_process'
-import * as path from 'path'
 import {expect, jest, test} from '@jest/globals'
 
 // A test that executes run() and verifies that it throws an error
