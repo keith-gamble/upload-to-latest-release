@@ -93,12 +93,11 @@ function run() {
             };
             const file = fs.createReadStream(path);
             core.debug(`File size: ${headers['content-length']}`);
-            const response = yield octokit.request('POST /repos/{owner}/{repo}/releases/{release_id}/assets{?name,label}', {
+            const response = yield octokit.request('POST /repos/{owner}/{repo}/releases/{release_id}/assets?name={name}', {
                 owner,
                 repo,
                 release_id,
                 name,
-                label: 'Ignition Module',
                 headers,
                 data: file
             });
