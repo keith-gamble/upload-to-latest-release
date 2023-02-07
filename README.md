@@ -13,10 +13,10 @@ This action uploads files to the latest release of a GitHub repository.
 - name: Upload to Latest Release
   uses: keith-gamble/upload-to-latest-release@master
   with:
-	name: 'MyReleaseAsset.zip'
-	path: 'build/MyReleaseAsset.zip'
-	token: ${{ secrets.GITHUB_TOKEN }}
-	content-type: 'application/zip' # Optional, defaults to 'application/octet-stream'
+    name: 'MyReleaseAsset.zip'
+    path: 'build/MyReleaseAsset.zip'
+    token: ${{ secrets.GITHUB_TOKEN }}
+    content-type: 'application/zip' # Optional, defaults to 'application/octet-stream'
 ```
 
 ## Inspiration
