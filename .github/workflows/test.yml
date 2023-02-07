@@ -22,5 +22,5 @@ jobs:
       - uses: ./
         with:
           name: 'LICENSE'
-          path: 'LICENSE'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          path: './LICENSE'
+          token: ${{ secrets.GITHUB_TOKEN }}
