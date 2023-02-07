@@ -35,13 +35,11 @@ export async function run(): Promise<void> {
 			throw new Error('No releases found')
 		}
 
-		const upload_url = releases_response.data[0].upload_url
 		const release_id = releases_response.data[0].id
 
 		core.debug(
 			`Uploading ${path} to ${name} on release ${release_id} as Content-Type '${contentType}'`
 		)
-		core.debug(`Upload URL: ${upload_url}`)
 
 		const assets_response = await octokit.rest.repos.listReleaseAssets({
 			owner,
@@ -55,9 +53,9 @@ export async function run(): Promise<void> {
 			if (asset_name === name) {
 				core.debug(`Deleting existing asset ${asset_id}`)
 				await octokit.rest.repos.deleteReleaseAsset({
+					asset_id,
 					owner,
-					repo,
-					asset_id
+					repo
 				})
 			}
 		}
