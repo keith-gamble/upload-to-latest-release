@@ -1,0 +1,20 @@
+repos:
+  - repo: local
+    hooks:
+      - id: lint
+        name: Lint
+        entry: npm run lint
+        language: node
+        types: [ts]
+        args: [--fix]
+        additional_dependencies: [eslint@^8.33.0]
+        files: \.(js|jsx|ts|tsx)$
+        exclude: ^__tests__/.*$
+      - id: markdownlint
+        name: markdownlint
+        entry: markdownlint
+        language: system
+        types: [markdown]
+        args: [
+          --config=.markdownlint.json
+          ]

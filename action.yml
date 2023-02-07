@@ -1,0 +1,20 @@
+name: 'Upload to Latest Release Action'
+description: 'A GitHub Action that uploads a file to the latest release.'
+author: 'keith-gamble'
+inputs:
+  name:
+    description: 'Asset name'
+    required: true
+  path:
+    description: 'Path to the file to upload'
+    required: true
+  content-type:
+    description: 'Content type for the file'
+    required: false
+    default: 'application/octet-stream'
+  repo-token:
+    description: 'secrets.GITHUB_TOKEN'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
