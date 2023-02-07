@@ -93,13 +93,14 @@ function run() {
             };
             const file = fs.createReadStream(path);
             core.debug(`File size: ${headers['content-length']}`);
-            const response = yield octokit.request('POST /repos/{owner}/{repo}/releases/{release_id}/assets{?name}', {
+            const response = yield octokit.request('POST /repos/{owner}/{repo}/releases/{release_id}/assets{?name,label}', {
                 owner,
                 repo,
                 release_id,
                 name,
+                label: 'Ignition Module',
                 headers,
-                file
+                data: file
             });
             const browser_download_url = response.data.browser_download_url;
             core.debug(`Download URL: ${browser_download_url}`);

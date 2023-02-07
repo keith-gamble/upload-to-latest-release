@@ -79,14 +79,15 @@ export async function run(): Promise<void> {
     core.debug(`File size: ${headers['content-length']}`)
 
     const response = await octokit.request(
-      'POST /repos/{owner}/{repo}/releases/{release_id}/assets{?name}',
+      'POST /repos/{owner}/{repo}/releases/{release_id}/assets{?name,label}',
       {
         owner,
         repo,
         release_id,
         name,
+        label: 'Ignition Module',
         headers,
-        file
+        data: file
       }
     )
 
