@@ -1,9 +1,8 @@
 # Upload To Latest Release GitHub Action
 
 <p align="center">
-  <a href="https://github.com/marketplace/actions/upload-to-latest-release-action"><img alt="upload-to-latest-release-action status" src="https://github.com/marketplace/actions/upload-to-latest-release-action/workflows/build-test/badge.svg"></a>
+  <a href="https://github.com/keith-gamble/upload-to-latest-release/actions"><img alt="upload-to-latest-release-action status" src="https://github.com/keith-gamble/upload-to-latest-release/workflows/build-test/badge.svg"></a>
 </p>
-
 
 
 This action uploads files to the latest release of a GitHub repository.
