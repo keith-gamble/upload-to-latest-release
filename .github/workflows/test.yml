@@ -21,6 +21,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./
         with:
-          name: 'LICENSE'
-          path: './LICENSE'
+          name: LICENSE
+          path: ./LICENSE
           token: ${{ secrets.GITHUB_TOKEN }}
