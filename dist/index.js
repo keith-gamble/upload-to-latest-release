@@ -37,7 +37,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.run = void 0;
 const core = __importStar(__nccwpck_require__(2186));
-const fs = __importStar(__nccwpck_require__(5747));
+// import * as fs from 'fs'
 const github = __importStar(__nccwpck_require__(5438));
 /**
  * Uploads a file to the latest release
@@ -59,7 +59,7 @@ function run() {
             const path = core.getInput('path', { required: true });
             const contentType = core.getInput('content-type', { required: true });
             // Get the id of the latest release
-            const releases_response = yield octokit.request('GET /repos/{owner}/{repo}/releases', {
+            const releases_response = yield octokit.rest.repos.listReleases({
                 owner,
                 repo
             });
@@ -71,7 +71,7 @@ function run() {
             const release_id = releases_response.data[0].id;
             core.debug(`Uploading ${path} to ${name} on release ${release_id} as Content-Type '${contentType}'`);
             core.debug(`Upload URL: ${upload_url}`);
-            const assets_response = yield octokit.request('GET /repos/{owner}/{repo}/releases/{release_id}/assets', {
+            const assets_response = yield octokit.rest.repos.listReleaseAssets({
                 owner,
                 repo,
                 release_id
@@ -80,7 +80,8 @@ function run() {
             for (const a of assets.filter(asset => asset)) {
                 const { id: asset_id, name: asset_name } = a;
                 if (asset_name === name) {
-                    octokit.request('DELETE /repos/{owner}/{repo}/releases/assets/{asset_id}', {
+                    core.debug(`Deleting existing asset ${asset_id}`);
+                    yield octokit.rest.repos.deleteReleaseAsset({
                         owner,
                         repo,
                         asset_id
@@ -88,18 +89,15 @@ function run() {
                 }
             }
             const headers = {
-                'content-type': contentType,
-                'content-length': fs.statSync(path).size
+                'content-type': contentType
             };
-            const file = fs.createReadStream(path);
-            core.debug(`File size: ${headers['content-length']}`);
-            const response = yield octokit.request('POST /repos/{owner}/{repo}/releases/{release_id}/assets?name={name}', {
+            const response = yield octokit.rest.repos.uploadReleaseAsset({
                 owner,
                 repo,
                 release_id,
                 name,
-                headers,
-                data: file
+                data: `@${path}`,
+                headers
             });
             const browser_download_url = response.data.browser_download_url;
             core.debug(`Download URL: ${browser_download_url}`);
