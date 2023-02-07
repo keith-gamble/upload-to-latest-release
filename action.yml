@@ -12,7 +12,7 @@ inputs:
     description: 'Content type for the file'
     required: false
     default: 'application/octet-stream'
-  repo-token:
+  token:
     description: 'secrets.GITHUB_TOKEN'
     required: true
 runs:

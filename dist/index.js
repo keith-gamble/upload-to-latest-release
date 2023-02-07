@@ -44,7 +44,7 @@ const github = __importStar(__nccwpck_require__(5438));
  * @param {string} name - The name of the file
  * @param {string} path - The path to the file
  * @param {string} contentType - The content type of the file
- * @param {string} repo-token - The GitHub token
+ * @param {string} token - The GitHub token
  */
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -53,7 +53,7 @@ function run() {
                 throw new Error('GITHUB_REPOSITORY is not set');
             }
             const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-            const token = core.getInput('repo-token', { required: true });
+            const token = core.getInput('token', { required: true });
             const octokit = github.getOctokit(token);
             const name = core.getInput('name', { required: true });
             const path = core.getInput('path', { required: true });

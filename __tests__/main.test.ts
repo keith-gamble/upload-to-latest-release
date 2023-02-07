@@ -12,7 +12,7 @@ test('test runs', async () => {
 	process.env['INPUT_NAME'] = "test.txt"
 	process.env['INPUT_PATH'] = "test.txt"
 	process.env['INPUT_CONTENT-TYPE'] = "text/plain"
-	process.env['INPUT_REPO-TOKEN'] = "123456789"
+	process.env['INPUT_TOKEN'] = "123456789"
 	
 
 	const octokitStub = {
