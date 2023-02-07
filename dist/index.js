@@ -104,8 +104,7 @@ function run() {
         }
         catch (error) {
             if (error instanceof Error) {
-                core.error(error);
-                core.setFailed(error.message);
+                core.setFailed(`${error}\n${error.stack}`);
             }
             else {
                 core.setFailed('Unknown error');
